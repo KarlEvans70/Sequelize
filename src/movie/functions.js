@@ -18,19 +18,26 @@ exports.listMovie = async () => {
   }
 };
 
-exports.updateMovie = async (amendTitle,previousTitle) => {
+exports.updateMovie = async (title, newActor) => {
     try {
-      const response = await Movie.update(amendTitle,previousTitle);
-    } catch (error) {
+      const response = await Movie.update({actor: newActor}, {
+        where: {
+          title  
+        }
+      })
+      console.log(`${title} actor changed to ${newActor}`)
+        } catch (error) {
       console.log(error);
     }  
 };
 
-exports.deleteMovie = async (getRid) => {
+exports.deleteMovie = async (title) => {
   try {
-    await Movie.delete(getRid);
-    console.log("Movie removed");
-  } catch (error) {
+    await Movie.destroy({
+        where: {
+            title 
+        }});
+   console.log("Movie removed");    
+     } catch (error) {
     console.log(error);
-  }
-};
+}};

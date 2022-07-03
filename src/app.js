@@ -18,11 +18,11 @@ const app = async (yargsObj) => {
 
         } else if (yargsObj.update) {
             // update one entry in movie table 
-            await updateMovie({title: yargsObj.title.amendTitle, actor:yargsObj.actor.amendActor},{where:{title:yargsObj.previousTitle}});
+            await updateMovie(yargsObj.title, yargsObj.actor);
         
         } else if (yargsObj.delete) {
             //delete entry from movie table
-            await deleteMovie({where:{title:yargsObj.delete}});
+            await deleteMovie(yargsObj.title);
         } else {
             console.log("Incorrect command");
         }
